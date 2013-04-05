@@ -1,9 +1,12 @@
 from django.http import HttpResponse
+from django.template import Context, loader
 from fbuser.models import Movie, User
+from django.shortcuts import render
+
 def room(request):
     movie_list = Movie.objects.all();
     user_list = User.objects.all();
-    output = ', '.join([p.title for p in movie_list])
-    user_output = ','.join([p.name for p in user_list])
-    output = '<p>Movie: ' + output + '</p><p>User: ' + user_output + '</p>'
-    return HttpResponse(output)
+
+    #template = loader.get_template('room/index.html')
+    context = Context({ 'movie_list': movie_list })
+    return render(request, 'room/index.html', context)
