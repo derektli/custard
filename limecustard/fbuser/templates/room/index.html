@@ -1,0 +1,10 @@
+{% if movie_list %}
+    <ul>
+        <p>Movie List</p>
+    {% for movie in movie_list %}
+        <p>{{ movie.title }}</p>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No movies found.</p>
+{% endif %}
